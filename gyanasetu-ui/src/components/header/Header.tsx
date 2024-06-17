@@ -13,17 +13,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { styled } from '@mui/material';
+import { Link, NavLink } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const HeaderToolbar = styled(Toolbar)`
   height: 65px; // Set the height of the toolbar
   margin:10 20;
+  
 `;
 const Header = styled(AppBar)`
   position: fixed;
   top: 0;
   z-index: 1100; // Ensure header is above the content
+  
 `;
 const Const =styled(Container)`
 
@@ -57,7 +60,6 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
@@ -67,7 +69,8 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Gyanasetu
+            <Link to={'/'}>Gyanasetu</Link>
+            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -133,10 +136,16 @@ function ResponsiveAppBar() {
               >
                 {page}
               </Button>
+              
             ))}
           </Box>
+          <Typography mx={3} variant='button'>
+            <NavLink to={'/practice'}> Practice</NavLink>
+          </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
+            
+            
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

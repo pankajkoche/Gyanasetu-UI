@@ -2,27 +2,34 @@ import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { TypographyProps } from '@mui/material/Typography';
+import { NavLink } from 'react-router-dom';
 
 const courses = [
   {
     title: 'DSA',
     image: 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220509120600/Learn-Data-Structures-and-Algorithms-Easily.gif',
-    description: 'Learn Data Structures and Algorithms to improve your problem-solving skills.'
+    description: 'Learn Data Structures and Algorithms to improve your problem-solving skills.',
+    link:'dsa'
   },
   {
     title: 'System Design',
     image: 'https://miro.medium.com/v2/resize:fit:3000/1*0zr0h8EydOH9n7f9YbF_lA.gif',
-    description: 'Master the principles of system design for scalable software architecture.'
+    description: 'Master the principles of system design for scalable software architecture.',
+    link:'sd'
+
   },
   {
     title: 'Web Development',
     image: 'https://i.pinimg.com/originals/02/74/20/0274207612d515f49012c87803a9e631.gif',
-    description: 'Learn to build modern web applications using the latest technologies.'
+    description: 'Learn to build modern web applications using the latest technologies.',
+    link:'web-dev'
+    
   },
   {
     title: 'Python',
     image: 'https://blog.ipemgzb.ac.in/wp-content/uploads/2022/05/benefits-of-python-for-Machine-Learning-AI.jpg',
-    description: 'Get started with Python, a versatile language for various applications.'
+    description: 'Get started with Python, a versatile language for various applications.',
+    link:"/Python"
   }
 ];
 
@@ -95,7 +102,7 @@ const Courses: React.FC = () => {
             <CourseDescription variant="body2">
               {course.description}
             </CourseDescription>
-            <StartButton variant="contained">Start Now</StartButton>
+            <StartButton variant="contained"><NavLink to={course.link}>Start Now</NavLink></StartButton>
           </CardContent>
         </CourseCard>
       ))}
