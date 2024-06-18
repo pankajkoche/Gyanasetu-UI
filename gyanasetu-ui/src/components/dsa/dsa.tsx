@@ -100,27 +100,17 @@ const topics = [
   },
 ];
 
+const Image = styled('img')({
+  width: '100%',
+  height: 'auto',
+});
+
 
 const DSATopics = () => {
-  const [bgColor, setBgColor] = useState('#211a01');
-
-  const handleScroll = () => {
-    const scrollTop = window.pageYOffset;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScroll;
-    const colorValue = Math.min(255, Math.floor(scrollFraction * 255));
-    setBgColor(`rgb(${255 - colorValue}, ${255 - colorValue}, 255)`);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+ 
   return (
     <Root >
+      
 <StyledContainer>
       {topics.map((topic, index) => (
         <StyledAccordion key={index}>
