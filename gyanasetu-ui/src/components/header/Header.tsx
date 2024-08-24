@@ -21,9 +21,11 @@ const HeaderToolbar = styled(Toolbar)`
   height: 65px; // Set the height of the toolbar
   margin:10 20;
   
+  
 `;
 const Header = styled(AppBar)`
   position: fixed;
+  color: aliceblue;
   top: 0;
   z-index: 1100; // Ensure header is above the content
   

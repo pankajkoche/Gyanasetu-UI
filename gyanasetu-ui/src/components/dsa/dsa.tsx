@@ -14,7 +14,7 @@ const StyledContainer = styled(Container)`
   padding: 40px 0;
 `;
 const CurvedBottomBox = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%)',
+  background: 'linear-gradient(135deg, #ed4e2b 0%, #88d3ce 100%)',
   borderRadius: '0 0 40% 60%',
   padding: theme.spacing(4),
   boxShadow: theme.shadows[4],
