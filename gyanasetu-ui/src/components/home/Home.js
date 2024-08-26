@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { Card, Typography, Grid } from "@mui/material";
+import { PieChart,  } from '@mui/x-charts';
 
 export default function Dashboard() {
   // State to track widgets in each container
@@ -7,7 +8,10 @@ export default function Dashboard() {
     container1: [{ id: 1, title: "Sales", content: "$20,000", bgColor: "#FF9300" }],
     container2: [{ id: 2, title: "Users", content: "1,500", bgColor: "#00A2FF" }],
     container3: [{ id: 3, title: "Orders", content: "350", bgColor: "#FF5733" }],
-    container4: [{ id: 4, title: "Feedback", content: "Positive", bgColor: "#28A745" }],
+    container4: [
+      { id: 4, title: "Feedback", content: "Positive", bgColor: "#28A745" },
+      { id: 5, type: "piechart", title: "Market Share", bgColor: "#673AB7" }
+    ],
   });
 
   // Handle drag start event
@@ -37,6 +41,13 @@ export default function Dashboard() {
   const allowDrop = (e) => {
     e.preventDefault();
   };
+
+  // Pie chart data
+  const pieChartData = [
+    { id: 'Product A', value: 300, color: "#FF6384", label: 'series A' },
+    { id: 'Product B', value: 500, color: "#36A2EB" ,label: 'series b' },
+    { id: 'Product C', value: 200, color: "#FFCE56" ,label: 'series C'},
+  ];
 
   // Render containers and widgets
   return (
@@ -78,7 +89,24 @@ export default function Dashboard() {
                   }}
                 >
                   <Typography variant="h6">{widget.title}</Typography>
-                  <Typography variant="h4">{widget.content}</Typography>
+                  {widget.type === "piechart" ? (
+                    <div>
+                      <PieChart
+                         width={330}
+                         height={100}
+                        series={[
+                          {
+                            data: pieChartData,
+                          },
+                        ]}
+                      />
+                      <Typography variant="body2" style={{ marginTop: "10px" }}>
+                        Market share distribution for the current year.
+                      </Typography>
+                    </div>
+                  ) : (
+                    <Typography variant="h4">{widget.content}</Typography>
+                  )}
                 </Card>
               ))}
             </div>
