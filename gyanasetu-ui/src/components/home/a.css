@@ -1,0 +1,30 @@
+/* Dashboard.css */
+
+/* Customize the grid layout styles */
+.react-grid-layout {
+    background-color: #f8f8f8;
+  }
+  
+  /* Custom styles for grid items (widgets) */
+  .react-grid-item {
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  
+  .react-grid-item > .react-resizable-handle {
+    position: absolute;
+    
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+    
+   
+  }
+  
+  /* Add custom hover effects */
+  .react-grid-item:hover {
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Additional custom styles */
+  
