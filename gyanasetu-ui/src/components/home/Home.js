@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Typography, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { PieChart } from "@mui/x-charts";
@@ -8,13 +8,16 @@ import "react-resizable/css/styles.css";
 import "./a.css";
 
 export default function Dashboard() {
-  const [widgets, setWidgets] = useState([
+  // Load widgets from local storage if available, otherwise use the default widgets
+  const initialWidgets = JSON.parse(localStorage.getItem("dashboardWidgets")) || [
     { id: 1, title: "Sales", content: "$20,000", bgColor: "#FF9300", type: "text" },
     { id: 2, title: "Users", content: "1,500", bgColor: "#00A2FF", type: "text" },
     { id: 3, title: "Orders", content: "350", bgColor: "#FF5733", type: "text" },
     { id: 4, title: "Feedback", content: "Positive", bgColor: "#28A745", type: "text" },
     { id: 5, title: "Market Share", bgColor: "#673AB7", type: "piechart" },
-  ]);
+  ];
+
+  const [widgets, setWidgets] = useState(initialWidgets);
 
   const availableWidgets = [
     { id: 6, title: "Revenue", content: "$15,000", bgColor: "#FF9500", type: "text" },
@@ -50,10 +53,17 @@ export default function Dashboard() {
 
   const handleAddWidget = (event, selectedWidget) => {
     if (selectedWidget) {
-      setWidgets((prevWidgets) => [...prevWidgets, selectedWidget]);
+      const newWidgets = [...widgets, selectedWidget];
+      setWidgets(newWidgets);
+      localStorage.setItem("dashboardWidgets", JSON.stringify(newWidgets)); // Save to localStorage
       handleClose(); // Close the dialog after adding the widget
     }
   };
+
+  // Save the current layout to localStorage whenever widgets state changes
+  useEffect(() => {
+    localStorage.setItem("dashboardWidgets", JSON.stringify(widgets));
+  }, [widgets]);
 
   return (
     <div style={{ padding: "20px" }}>
